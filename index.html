@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BOAT AI | 競艇予想</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="brand">🚤 <span>BOAT AI</span></div>
+  <div class="badge">PROTOTYPE</div>
+</header>
+
+<main>
+  <section class="hero">
+    <div>
+      <p class="eyebrow">AI BOAT RACE ANALYSIS</p>
+      <h1>今日の注目レース</h1>
+      <p class="muted">勝率・展示・ST・モーター・オッズを統合したAI予想のプロトタイプです。</p>
+    </div>
+    <div class="date">2026 / 08 / 23</div>
+  </section>
+
+  <section class="race-grid">
+    <button class="race-card active" data-race="戸田 10R">
+      <span>戸田</span><strong>10R</strong><small>AI信頼度 ★★★★★</small>
+    </button>
+    <button class="race-card" data-race="平和島 8R">
+      <span>平和島</span><strong>8R</strong><small>AI信頼度 ★★★★☆</small>
+    </button>
+    <button class="race-card" data-race="江戸川 11R">
+      <span>江戸川</span><strong>11R</strong><small>AI信頼度 ★★★☆☆</small>
+    </button>
+  </section>
+
+  <section class="panel">
+    <div class="panel-title">
+      <div><span class="chip">注目</span><h2 id="raceName">戸田 10R</h2></div>
+      <span class="rating" id="rating">★★★★★</span>
+    </div>
+
+    <div class="summary">
+      <div class="main-pick">
+        <div class="label">AI本命</div>
+        <div class="number" id="mainPick">1</div>
+        <div class="horse-name" id="pickName">1号艇</div>
+        <div class="confidence" id="confidence">AI勝率 48.2%</div>
+      </div>
+
+      <div class="metrics">
+        <div><span>期待値</span><b id="ev">A+</b></div>
+        <div><span>展開評価</span><b>強</b></div>
+        <div><span>穴指数</span><b id="hole">76</b></div>
+        <div><span>市場乖離</span><b id="gap">+8.4pt</b></div>
+      </div>
+    </div>
+
+    <h3>AI勝率</h3>
+    <div id="probabilities" class="probabilities"></div>
+
+    <div class="picks">
+      <div><span class="symbol win">◎</span><b>本命</b><strong id="pick1">1号艇</strong></div>
+      <div><span class="symbol draw">○</span><b>対抗</b><strong id="pick2">2号艇</strong></div>
+      <div><span class="symbol place">▲</span><b>単穴</b><strong id="pick3">3号艇</strong></div>
+      <div><span class="symbol hole">☆</span><b>穴</b><strong id="pick4">4号艇</strong></div>
+    </div>
+
+    <h3>推奨買い目 <span class="muted small">※プロトタイプ</span></h3>
+    <div id="bets" class="bets"></div>
+
+    <div class="note">
+      <b>AIコメント</b>
+      <p id="comment">1号艇のイン戦を中心に評価。展示・STが良好で、オッズとの乖離もプラス。現時点では1号艇を軸にする期待値が高いと判定しています。</p>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-title"><div><span class="chip">成績</span><h2>バックテスト管理</h2></div></div>
+    <div class="stats">
+      <div><span>予想レース</span><b>1,000</b></div>
+      <div><span>的中率</span><b>31.4%</b></div>
+      <div><span>回収率</span><b>103.8%</b></div>
+      <div><span>最大連敗</span><b>17</b></div>
+    </div>
+    <p class="warning">※上記数値は画面デザイン用の仮データです。実際の競艇データによる実績ではありません。</p>
+  </section>
+</main>
+
+<footer>BOAT AI — 自分専用競艇AI予想アプリ / Prototype</footer>
+<script src="app.js"></script>
+</body>
+</html>
