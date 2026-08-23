@@ -438,6 +438,8 @@ async function loadRealData() {
 
     console.log("今日のレースデータ:", data);
 
+     alert(JSON.stringify(data).slice(0, 1000));
+
     // APIデータが存在するか確認
 
     if (
