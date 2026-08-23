@@ -1,37 +1,253 @@
-<!DOCTYPE html>
+"use strict";
 
-<html lang="ja">
+/* ==========================================
 
-<head>
+   BOAT AI
 
-<meta charset="UTF-8">
+   レースデータ
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+========================================== */
 
-<title>BOAT AI</title>
+const races = {
 
-<style>
+  "戸田 10R": {
 
-* {
+    rating: "★★★★★",
 
-  box-sizing: border-box;
+    confidence: "★★★★★",
+
+    mainPick: "1号艇",
+
+    hole: "4号艇",
+
+    winRate: "48.2%",
+
+    comment:
+
+      "イン有利を中心に1号艇を本命評価。まずは1号艇を軸に展開を考える。",
+
+    bets:
+
+      "1-2-4 / 1-4-2 / 1-2-3"
+
+  },
+
+  "平和島 8R": {
+
+    rating: "★★★★☆",
+
+    confidence: "★★★★☆",
+
+    mainPick: "2号艇",
+
+    hole: "3号艇",
+
+    winRate: "34.5%",
+
+    comment:
+
+      "2号艇を中心に評価。展開次第では3号艇の食い込みにも注目。",
+
+    bets:
+
+      "2-1-3 / 2-3-1 / 1-2-3"
+
+  },
+
+  "江戸川 11R": {
+
+    rating: "★★★☆☆",
+
+    confidence: "★★★☆☆",
+
+    mainPick: "2号艇",
+
+    hole: "3号艇",
+
+    winRate: "29.1%",
+
+    comment:
+
+      "混戦。2号艇を軸候補として評価し、3号艇の絡みにも注意。",
+
+    bets:
+
+      "2-1-3 / 2-3-1 / 1-2-3"
+
+  }
+
+};
+
+/* ==========================================
+
+   画面を書き換える
+
+========================================== */
+
+function renderRace(raceName) {
+
+  const race = races[raceName];
+
+  if (!race) {
+
+    console.error(
+
+      "レースデータがありません:",
+
+      raceName
+
+    );
+
+    return;
+
+  }
+
+  document.getElementById("raceName").textContent =
+
+    raceName;
+
+  document.getElementById("rating").textContent =
+
+    race.rating;
+
+  document.getElementById("confidence").textContent =
+
+    race.confidence;
+
+  document.getElementById("mainPick").textContent =
+
+    race.mainPick;
+
+  document.getElementById("hole").textContent =
+
+    race.hole;
+
+  document.getElementById("winRate").textContent =
+
+    race.winRate;
+
+  document.getElementById("comment").textContent =
+
+    race.comment;
+
+  document.getElementById("bets").textContent =
+
+    race.bets;
 
 }
 
-body {
+/* ==========================================
 
-  margin: 0;
+   レースボタン
 
-  background: #07111f;
+========================================== */
 
-  color: #e8f0ff;
+function setupRaceButtons() {
 
-  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  const buttons =
+
+    document.querySelectorAll(".race-card");
+
+  buttons.forEach(function(button) {
+
+    button.addEventListener(
+
+      "click",
+
+      function() {
+
+        const raceName =
+
+          button.getAttribute("data-race");
+
+        console.log(
+
+          "選択されたレース:",
+
+          raceName
+
+        );
+
+        if (!raceName) {
+
+          console.error(
+
+            "data-raceがありません"
+
+          );
+
+          return;
+
+        }
+
+        /*
+
+         * 全ボタンの選択を解除
+
+         */
+
+        buttons.forEach(function(item) {
+
+          item.classList.remove(
+
+            "active"
+
+          );
+
+        });
+
+        /*
+
+         * 押したボタンを選択状態にする
+
+         */
+
+        button.classList.add(
+
+          "active"
+
+        );
+
+        /*
+
+         * レース内容を更新
+
+         */
+
+        renderRace(
+
+          raceName
+
+        );
+
+      }
+
+    );
+
+  });
 
 }
 
-header {
+/* ==========================================
 
-  padding: 28px 24px;
+   ページ読み込み後に開始
 
-  border-bottom: 1px solid #263a55;
+========================================== */
+
+document.addEventListener(
+
+  "DOMContentLoaded",
+
+  function() {
+
+    setupRaceButtons();
+
+    renderRace(
+
+      "戸田 10R"
+
+    );
+
+  }
+
+);
