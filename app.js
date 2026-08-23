@@ -12,43 +12,43 @@ const races = {
 
   "戸田 10R": {
 
-    rating: "★★★★★",
+  rating: "★★★★★",
 
-    confidence: "★★★★★",
+  confidence: "★★★★★",
 
-    mainPick: "1号艇",
+  mainPick: "1号艇",
 
-    hole: "4号艇",
+  hole: "4号艇",
 
-    winRate: "48.2%",
+  winRate: "48.2%",
 
-    comment:
+  comment:
 
-      "イン有利を中心に1号艇を本命評価。まずは1号艇を軸に展開を考える。",
+    "イン有利を中心に1号艇を本命評価。まずは1号艇を軸に展開を考える。",
 
-    bets:
+  bets:
 
-      "1-2-4 / 1-4-2 / 1-2-boats: [
+    "1-2-4 / 1-4-2 / 1-2-3",
 
-    { number: 1, name: "選手A", score: "48.2%", detail: "1着期待度" },
+  boats: [
 
-    { number: 2, name: "選手B", score: "21.6%", detail: "1着期待度" },
+    { number: 1, name: "選手A", score: "48.2%" },
 
-    { number: 3, name: "選手C", score: "12.4%", detail: "1着期待度" },
+    { number: 2, name: "選手B", score: "21.6%" },
 
-    { number: 4, name: "選手D", score: "9.8%", detail: "1着期待度" },
+    { number: 3, name: "選手C", score: "12.4%" },
 
-    { number: 5, name: "選手E", score: "5.1%", detail: "1着期待度" },
+    { number: 4, name: "選手D", score: "9.8%" },
 
-    { number: 6, name: "選手F", score: "3.0%", detail: "1着期待度" }
+    { number: 5, name: "選手E", score: "5.1%" },
+
+    { number: 6, name: "選手F", score: "3.0%" }
 
   ]
 
+},
 
-
-  },
-
-  "平和島 8R": {
+  平和島 8R": {
 
     rating: "★★★★☆",
 
@@ -87,7 +87,7 @@ const races = {
 
   },
 
-  "江戸川 11R": {
+　  "江戸川 11R": {
 
     rating: "★★★☆☆",
 
