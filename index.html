@@ -89,5 +89,32 @@
 
 <footer>BOAT AI — 自分専用競艇AI予想アプリ / Prototype</footer>
 <script src="app.js"></script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const cards = document.querySelectorAll(".race-card");
+
+  cards.forEach(function (card) {
+
+    card.addEventListener("click", function () {
+
+      const raceName = card.getAttribute("data-race");
+
+      if (!raceName) return;
+
+      // 注目レース名を変更
+
+      const nameElement = document.getElementById("raceName");
+
+      if (nameElement) {
+
+        nameElement.textContent = raceName;
+
+      }
+
+      // 選択状態を変更
+
+      cards.forEach(function (c) {
+
+        c.classList.remove("active");
 </body>
 </html>
