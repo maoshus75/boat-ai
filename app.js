@@ -121,41 +121,58 @@ function renderRace(name) {
 
   document.addEventListener("DOMContentLoaded", () => {
 
-  document.querySelectorAll(".race-card").forEach(card => {
+  // ==============================
+// レースボタンのクリック処理
+// ==============================
 
-    card.addEventListener("click", () => {
+document.querySelectorAll(".race-card").forEach(card => {
 
-      const raceName = card.dataset.race;
+  card.addEventListener("click", function () {
 
-      console.log("クリック:", raceName);
+    // data-raceからレース名を取得
+    let raceName = this.dataset.race;
 
-      if (!raceName) {
+    // data-raceが取得できない場合は、
+    // ボタン内の文字からレース名を判定
+    if (!raceName) {
+      const text = this.innerText;
 
-        console.log("data-raceがありません");
-
-        return;
-
+      if (text.includes("戸田") && text.includes("10R")) {
+        raceName = "戸田 10R";
+      } else if (text.includes("平和島") && text.includes("8R")) {
+        raceName = "平和島 8R";
+      } else if (text.includes("江戸川") && text.includes("11R")) {
+        raceName = "江戸川 11R";
       }
+    }
 
-      // 選択状態を変更
+    console.log("クリックされたレース:", raceName);
 
-      document.querySelectorAll(".race-card").forEach(c => {
+    // レース名が取得できなかった場合
+    if (!raceName) {
+      console.error("レース名を取得できませんでした");
+      return;
+    }
 
-        c.classList.remove("active");
+    // ==============================
+    // 選択状態を変更
+    // ==============================
 
-      });
-
-      card.classList.add("active");
-
-      // レース内容を切り替える
-
-      renderRace(raceName);
-
+    document.querySelectorAll(".race-card").forEach(c => {
+      c.classList.remove("active");
     });
 
+    this.classList.add("active");
+
+    // ==============================
+    // レース内容を表示
+    // ==============================
+
+    renderRace(raceName);
   });
 
 });
+```
 
   
 
