@@ -880,6 +880,90 @@ const races = {
 
 };
 
+/* =================================
+
+   レース表示
+
+================================= */
+
+function renderRace(raceName, data) {
+
+    console.log("renderRace:", raceName, data);
+
+    // レース名から場名・レース番号を取得
+
+    const raceNoMatch = raceName.match(/(\d+)R/);
+
+    const raceNo = raceNoMatch ? Number(raceNoMatch[1]) : 1;
+
+    // APIデータからレース一覧を取得
+
+    const programs = data?.programs || [];
+
+    if (!programs.length) {
+
+        console.error("レースデータがありません");
+
+        return;
+
+    }
+
+    // レース番号で検索
+
+    let race = programs.find(program => {
+
+        const no =
+
+            program.raceNumber ??
+
+            program.raceNo ??
+
+            program.number;
+
+        return Number(no) === raceNo;
+
+    });
+
+    // 見つからない場合は1件目を使用
+
+    if (!race) {
+
+        console.warn("指定したレースが見つかりません:", raceName);
+
+        race = programs[0];
+
+    }
+
+    console.log("表示するレース:", race);
+
+    // 選手・艇データを取得
+
+    const boats =
+
+        race?.boats ||
+
+        race?.entries ||
+
+        race?.racers ||
+
+        race?.players ||
+
+        [];
+
+    if (!boats.length) {
+
+        console.error("艇データがありません:", race);
+
+        return;
+
+    }
+
+    // 6艇表示
+
+    renderBoats(boats.slice(0, 6));
+
+}
+
 function renderBoats(boats) {
 
     const container =
