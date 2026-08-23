@@ -195,47 +195,58 @@ function detectRaceFromCard(card) {
 
 document.addEventListener("DOMContentLoaded", () => {
 
+  // 初期表示
+
   renderRace("戸田 10R");
 
-  document.querySelectorAll(".race-card").forEach(card => {
+  // レースカードをタップしたとき
 
-    card.addEventListener("click", () => {
+  document.addEventListener("click", (event) => {
 
-      const raceName =
+    const card = event.target.closest(".race-card");
 
-        card.dataset.race ||
+    if (!card) return;
 
-        detectRaceFromCard(card);
+    const raceName = card.getAttribute("data-race");
 
-      if (raceName) {
+    if (!raceName) return;
 
-        renderRace(raceName);
+    console.log("選択されたレース:", raceName);
 
-        card.classList.add("active");
+    // 注目レースを変更
 
-        window.scrollTo({
+    renderRace(raceName);
 
-          top: document.body.scrollHeight,
+    // activeを全部解除
 
-          behavior: "smooth"
+    document.querySelectorAll(".race-card").forEach((c) => {
 
-        });
-
-      }
+      c.classList.remove("active");
 
     });
+
+    // タップしたカードだけactive
+
+    card.classList.add("active");
+
+    // 注目レースまで移動
+
+    const panel = document.querySelector(".panel");
+
+    if (panel) {
+
+      panel.scrollIntoView({
+
+        behavior: "smooth",
+
+        block: "start"
+
+      });
+
+    }
 
   });
 
 });
-const autoRaces = ["戸田 10R", "平和島 8R", "江戸川 11R"];
 
-let autoIndex = 0;
-
-setInterval(() => {
-
-  autoIndex = (autoIndex + 1) % autoRaces.length;
-
-  renderRace(autoRaces[autoIndex]);
-
-}, 5000);
+   
