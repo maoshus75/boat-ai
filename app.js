@@ -1008,15 +1008,25 @@ function renderBoats(boats) {
 
 ========================= */
 
-function init() {
+async function init() {
 
     showToday();
+
+    const realData = await loadRealData();
+
+    if (!realData) {
+
+        console.error("レースデータを取得できませんでした");
+
+        return;
+
+    }
 
     createRaceButtons();
 
     // 初期表示
 
-    renderRace("戸田 10R");
+    
 
 }
 
