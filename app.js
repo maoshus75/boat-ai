@@ -1122,7 +1122,9 @@ async function init() {
 
   showToday();
 
-  createRaceButtons();
+    // 一時的に停止
+
+  // createRaceButtons();
 
   // APIから今日のレースデータを取得
 
