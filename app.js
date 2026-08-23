@@ -633,7 +633,50 @@ function renderRace(raceName, data) {
     )
 
   }));
+   
+// AI評価順に並べる
 
+const ranked = [...boats].sort((a, b) => b.score - a.score);
+
+// 本命
+
+const main = ranked[0];
+
+// 穴候補
+
+const hole = ranked[2];
+
+// 買い目候補
+
+const second = ranked[1];
+
+const third = ranked[2];
+
+// 画面に反映
+
+document.getElementById("mainPick").textContent =
+
+  `${main.number}号艇`;
+
+document.getElementById("mainPickName").textContent =
+
+  main.name;
+
+document.getElementById("hole").textContent =
+
+  `${hole.number}号艇`;
+
+document.getElementById("winRate").textContent =
+
+  `${main.score}%`;
+
+document.getElementById("comment").textContent =
+
+  `${main.number}号艇 ${main.name}を本命評価。AI評価${main.score}%で6艇中トップ。`;
+
+document.getElementById("bets").textContent =
+
+  `${main.number}-${second.number}-${third.number} / ${main.number}-${third.number}-${second.number}`;
   renderBoats(boats);
 
 }
