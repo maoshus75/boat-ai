@@ -618,19 +618,33 @@ function renderRace(raceName, data) {
 
     score: Math.round(
 
-      (
+  (racer.national_win_rate || 0) * 8 +
 
-        (racer.national_win_rate || 0) * 8 +
+  (racer.local_win_rate || 0) * 5 +
 
-        (racer.local_win_rate || 0) * 5 +
+  (racer.motor_top_2_percent || 0) * 0.1 +
 
-        (racer.motor_top_2_percent || 0) * 0.2 +
+  (racer.boat_top_2_percent || 0) * 0.1 +
 
-        (racer.boat_top_2_percent || 0) * 0.1
+  // コース補正
 
-      )
+  (
 
-    )
+    racer.entry_number === 1 ? 12 :
+
+    racer.entry_number === 2 ? 6 :
+
+    racer.entry_number === 3 ? 4 :
+
+    racer.entry_number === 4 ? 2 :
+
+    racer.entry_number === 5 ? 0 :
+
+    -2
+
+  )
+
+)
 
   }));
    
