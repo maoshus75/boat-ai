@@ -880,6 +880,80 @@ const races = {
 
 };
 
+function renderBoats(boats) {
+
+    const container =
+
+        document.getElementById("boatsList");
+
+    if (!container) {
+
+        console.error("boatsList が見つかりません");
+
+        return;
+
+    }
+
+    container.innerHTML = "";
+
+    boats.forEach(boat => {
+
+        const card =
+
+            document.createElement("div");
+
+        card.className = "boat-card";
+
+        card.innerHTML = `
+
+            <div class="boat-number">
+
+                ${boat.number}
+
+            </div>
+
+            <div class="boat-info">
+
+                <div class="boat-name">
+
+                    ${boat.name}
+
+                </div>
+
+                <div class="boat-score">
+
+                    AI評価 ${boat.score}%
+
+                </div>
+
+            </div>
+
+            <div class="boat-bar">
+
+                <div
+
+                    class="boat-bar-inner"
+
+                    style="width:${boat.score}%">
+
+                </div>
+
+            </div>
+
+        `;
+
+        container.appendChild(card);
+
+    });
+
+}
+
+/* =========================
+
+   6艇表示
+
+========================= */
+
 /* =================================
 
    レース表示
@@ -963,80 +1037,6 @@ function renderRace(raceName, data) {
     renderBoats(boats.slice(0, 6));
 
 }
-
-function renderBoats(boats) {
-
-    const container =
-
-        document.getElementById("boatsList");
-
-    if (!container) {
-
-        console.error("boatsList が見つかりません");
-
-        return;
-
-    }
-
-    container.innerHTML = "";
-
-    boats.forEach(boat => {
-
-        const card =
-
-            document.createElement("div");
-
-        card.className = "boat-card";
-
-        card.innerHTML = `
-
-            <div class="boat-number">
-
-                ${boat.number}
-
-            </div>
-
-            <div class="boat-info">
-
-                <div class="boat-name">
-
-                    ${boat.name}
-
-                </div>
-
-                <div class="boat-score">
-
-                    AI評価 ${boat.score}%
-
-                </div>
-
-            </div>
-
-            <div class="boat-bar">
-
-                <div
-
-                    class="boat-bar-inner"
-
-                    style="width:${boat.score}%">
-
-                </div>
-
-            </div>
-
-        `;
-
-        container.appendChild(card);
-
-    });
-
-}
-
-/* =========================
-
-   6艇表示
-
-========================= */
 
 function renderBoats(boats) {
 
