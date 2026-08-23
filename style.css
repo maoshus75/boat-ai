@@ -539,3 +539,37 @@ footer {
   }
 
 }
+
+/* =========================
+
+   6艇AI分析
+
+========================= */
+
+.boats-section {
+
+  margin-top: 22px;
+
+}
+
+.boats-title {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  margin-bottom: 12px;
+
+}
+
+.boats-title h3 {
+
+  margin: 0;
+
+  font-size: 20px;
+
+}
+
+.boats-title span {
