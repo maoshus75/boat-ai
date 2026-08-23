@@ -964,6 +964,7 @@ function renderBoats(boats) {
 
 ================================= */
 
+/*
 function renderRace(raceName, data) {
 
    alert(JSON.stringify(data).slice(0, 3000));
@@ -1048,6 +1049,7 @@ function renderRace(raceName, data) {
 
 }
 
+*/
 function renderBoats(boats) {
 
   const container =
