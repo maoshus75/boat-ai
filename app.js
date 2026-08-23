@@ -962,79 +962,83 @@ function renderBoats(boats) {
 
 function renderRace(raceName, data) {
 
-    console.log("renderRace:", raceName, data);
+  console.log("renderRace:", raceName, data);
 
-    // レース名から場名・レース番号を取得
+  if (!data || !data.programs || !data.programs.stadiums) {
 
-    const raceNoMatch = raceName.match(/(\d+)R/);
+    console.error("APIデータがありません");
 
-    const raceNo = raceNoMatch ? Number(raceNoMatch[1]) : 1;
+    return;
 
-    // APIデータからレース一覧を取得
+  }
 
-    const programs = data?.programs || [];
+  // 「戸田 1R」などからレース番号を取得
 
-    if (!programs.length) {
+  const raceNoMatch = raceName.match(/(\d+)R/);
 
-        console.error("レースデータがありません");
+  const raceNo = raceNoMatch ? raceNoMatch[1] : "1";
 
-        return;
+  // 戸田 = 会場番号 2
 
-    }
+  const toda = data.programs.stadiums["2"];
 
-    // レース番号で検索
+  if (!toda || !toda.races) {
 
-    let race = programs.find(program => {
+    console.error("戸田のレースデータがありません");
 
-        const no =
+    return;
 
-            program.raceNumber ??
+  }
 
-            program.raceNo ??
+  const race = toda.races[String(raceNo)];
 
-            program.number;
+  if (!race) {
 
-        return Number(no) === raceNo;
+    console.error("指定レースがありません:", raceName);
 
-    });
+    return;
 
-    // 見つからない場合は1件目を使用
+  }
 
-    if (!race) {
+  console.log("表示するレース:", race);
 
-        console.warn("指定したレースが見つかりません:", raceName);
+  // racers はオブジェクトなので配列に変換
 
-        race = programs[0];
+  const racers = Object.values(race.racers || {});
 
-    }
+  if (!racers.length) {
 
-    console.log("表示するレース:", race);
+    console.error("選手データがありません");
 
-    // 選手・艇データを取得
+    return;
 
-    const boats =
+  }
 
-        race?.boats ||
+  const boats = racers.map(racer => ({
 
-        race?.entries ||
+    number: racer.entry_number,
 
-        race?.racers ||
+    name: racer.name,
 
-        race?.players ||
+    score: Math.round(
 
-        [];
+      (
 
-    if (!boats.length) {
+        (racer.national_win_rate || 0) * 8 +
 
-        console.error("艇データがありません:", race);
+        (racer.local_win_rate || 0) * 5 +
 
-        return;
+        (racer.motor_top_2_percent || 0) * 0.2 +
 
-    }
+        (racer.boat_top_2_percent || 0) * 0.1
 
-    // 6艇表示
+      )
 
-    renderBoats(boats.slice(0, 6));
+    )
+
+  }));
+
+  renderBoats(boats);
 
 }
 
