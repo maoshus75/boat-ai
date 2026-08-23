@@ -255,91 +255,77 @@ race.boats.forEach(function(boat) {
 
    レースボタン
 
-========================================== */
+========================================== *
 
 function setupRaceButtons() {
 
-  const buttons =
+    const cards = document.querySelectorAll(".race-card");
 
-    document.querySelectorAll(".race-card");
+    cards.forEach(function(card) {
 
-  buttons.forEach(function(button) {
+        card.addEventListener("click", function() {
 
-    button.addEventListener(
+            let raceName = card.getAttribute("data-race");
 
-      "click",
+            // data-race が取得できない場合
 
-      function() {
+            // 画面に表示されている文字から判定
 
-        const raceName =
+            if (!raceName) {
 
-          button.getAttribute("data-race");
+                const text = card.innerText;
 
-        console.log(
+                if (text.includes("戸田") && text.includes("10R")) {
 
-          "選択されたレース:",
+                    raceName = "戸田 10R";
 
-          raceName
+                }
 
-        );
+                else if (text.includes("平和島") && text.includes("8R")) {
 
-        if (!raceName) {
+                    raceName = "平和島 8R";
 
-          console.error(
+                }
 
-            "data-raceがありません"
+                else if (text.includes("江戸川") && text.includes("11R")) {
 
-          );
+                    raceName = "江戸川 11R";
 
-          return;
+                }
 
-        }
+            }
 
-        /*
+            console.log("選択されたレース:", raceName);
 
-         * 全ボタンの選択を解除
+            // レース名が取得できなかった場合
 
-         */
+            if (!raceName) {
 
-        buttons.forEach(function(item) {
+                console.error("レース名を取得できませんでした");
 
-          item.classList.remove(
+                return;
 
-            "active"
+            }
 
-          );
+            // 全レースの選択状態を解除
+
+            cards.forEach(function(c) {
+
+                c.classList.remove("active");
+
+            });
+
+            // 押したレースを選択状態にする
+
+            card.classList.add("active");
+
+            // レース内容を表示
+
+            renderRace(raceName);
 
         });
 
-        /*
-
-         * 押したボタンを選択状態にする
-
-         */
-
-        button.classList.add(
-
-          "active"
-
-        );
-
-        /*
-
-         * レース内容を更新
-
-         */
-
-        renderRace(
-
-          raceName
-
-        );
-
-      }
-
-    );
-
-  });
+    });
 
 }
 
