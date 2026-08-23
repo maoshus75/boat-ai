@@ -120,6 +120,46 @@ function renderRace(name) {
 
   document.querySelectorAll(".race-card").forEach(card => {
 
+  card.addEventListener("click", function () {
+
+    const raceName = this.dataset.race;
+
+    if (!raceName) return;
+
+    // レース内容を切り替える
+
+    renderRace(raceName);
+
+    // 選択中カードを切り替える
+
+    document.querySelectorAll(".race-card").forEach(c => {
+
+      c.classList.remove("active");
+
+    });
+
+    this.classList.add("active");
+
+    // 注目レースまで移動
+
+    const panel = document.querySelector(".panel");
+
+    if (panel) {
+
+      panel.scrollIntoView({
+
+        behavior: "smooth",
+
+        block: "start"
+
+      });
+
+    }
+
+  });
+
+});.forEach(card => {
+
     card.classList.remove("active");
 
   });
