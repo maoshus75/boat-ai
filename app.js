@@ -69,47 +69,7 @@ function setText(id, text) {
 }
 
 function renderRace(name) {
-function selectRace(card) {
 
-  const raceName = card.getAttribute("data-race");
-
-  if (!raceName) return;
-
-  console.log("タップ:", raceName);
-
-  // 注目レースを変更
-
-  renderRace(raceName);
-
-  // activeを全部外す
-
-  document.querySelectorAll(".race-card").forEach((item) => {
-
-    item.classList.remove("active");
-
-  });
-
-  // タップしたカードをactiveにする
-
-  card.classList.add("active");
-
-  // 注目レースまでスクロール
-
-  const panel = document.querySelector(".panel");
-
-  if (panel) {
-
-    panel.scrollIntoView({
-
-      behavior: "smooth",
-
-      block: "start"
-
-    });
-
-  }
-
-}
   const race = races[name];
 
   if (!race) return;
@@ -171,39 +131,14 @@ function selectRace(card) {
 
     renderRace(raceName);
 
-    // 選択中カードを切り替える
+  
 
    
 
-  
 
-    this.classList.add("active");
+    
 
-    // 注目レースまで移動
 
-    const panel = document.querySelector(".panel");
-
-    if (panel) {
-
-      panel.scrollIntoView({
-
-        behavior: "smooth",
-
-        block: "start"
-
-      });
-
-    }
-
-  });
-
-});.forEach(card => {
-
-    card.classList.remove("active");
-
-  });
-
-}
 
 function detectRaceFromCard(card) {
 
@@ -243,11 +178,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const card = event.target.closest(".race-card");
 
-    if (!card) return;
+if (!card) return;
 
-    const raceName = card.getAttribute("data-race");
+const raceName = card.getAttribute("data-race-name") || detectRaceFromCard(card);
 
-    if (!raceName) return;
+if (!raceName) return;
 
     console.log("選択されたレース:", raceName);
 
