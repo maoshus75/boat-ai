@@ -183,6 +183,72 @@ function renderRace(raceName) {
 
     race.bets;
 
+   /* =========================
+
+   6艇AI分析を表示
+
+========================= */
+
+const boatsList =
+
+  document.getElementById("boatsList");
+
+boatsList.innerHTML = "";
+
+race.boats.forEach(function(boat) {
+
+  const row =
+
+    document.createElement("div");
+
+  row.className = "boat-row";
+
+  row.innerHTML = `
+
+    <div class="boat-number">
+
+      ${boat.number}
+
+    </div>
+
+    <div>
+
+      <div class="boat-name">
+
+        ${boat.name}
+
+      </div>
+
+      <div class="boat-details">
+
+        ${boat.detail}
+
+      </div>
+
+    </div>
+
+    <div class="boat-score">
+
+      <div class="boat-score-number">
+
+        ${boat.score}
+
+      </div>
+
+      <div class="boat-score-label">
+
+        AI勝率
+
+      </div>
+
+    </div>
+
+  `;
+
+  boatsList.appendChild(row);
+
+});
+   
 }
 
 /* ==========================================
