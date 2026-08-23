@@ -267,27 +267,21 @@ function setupRaceButtons() {
 
             let raceName = card.getAttribute("data-race");
 
-            // data-race が取得できない場合
-
-            // 画面に表示されている文字から判定
+            // data-race が設定されていない場合は画面の文字から判定
 
             if (!raceName) {
 
-                const text = card.innerText;
+                const text = card.innerText || "";
 
-                if (text.includes("戸田") && text.includes("10R")) {
+                if (text.includes("戸田")) {
 
                     raceName = "戸田 10R";
 
-                }
-
-                else if (text.includes("平和島") && text.includes("8R")) {
+                } else if (text.includes("平和島")) {
 
                     raceName = "平和島 8R";
 
-                }
-
-                else if (text.includes("江戸川") && text.includes("11R")) {
+                } else if (text.includes("江戸川")) {
 
                     raceName = "江戸川 11R";
 
