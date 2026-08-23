@@ -962,6 +962,8 @@ function renderBoats(boats) {
 
 function renderRace(raceName, data) {
 
+   alert(JSON.stringify(data).slice(0, 3000));
+   
   console.log("renderRace:", raceName, data);
 
   if (!data || !data.programs || !data.programs.stadiums) {
