@@ -466,7 +466,9 @@ async function loadRealData() {
 
   } catch (error) {
 
-    console.error("レースデータを取得できません:", error);
+     alert("エラー内容：" + error.message);
+   
+     console.error("レースデータを取得できません:", error);
 
     return null;
 
