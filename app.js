@@ -119,25 +119,39 @@ function renderRace(name) {
 
   }
 
+  document.addEventListener("DOMContentLoaded", () => {
+
   document.querySelectorAll(".race-card").forEach(card => {
 
-  card.addEventListener("click", function() {
+    card.addEventListener("click", () => {
 
-    const raceName =
+      const raceName = card.dataset.race;
 
-      this.dataset.race || detectRaceFromCard(this);
+      console.log("クリック:", raceName);
 
-    if (!raceName) {
+      if (!raceName) {
 
-      console.log("レース名を取得できません");
+        console.log("data-raceがありません");
 
-      return;
+        return;
 
-    }
+      }
 
-    // レース内容を切り替える
+      // 選択状態を変更
 
-    renderRace(raceName);
+      document.querySelectorAll(".race-card").forEach(c => {
+
+        c.classList.remove("active");
+
+      });
+
+      card.classList.add("active");
+
+      // レース内容を切り替える
+
+      renderRace(raceName);
+
+    });
 
   });
 
