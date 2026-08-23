@@ -173,11 +173,9 @@ function selectRace(card) {
 
     // 選択中カードを切り替える
 
-    document.querySelectorAll(".race-card").forEach(c => {
+   
 
-      c.classList.remove("active");
-
-    });
+  
 
     this.classList.add("active");
 
