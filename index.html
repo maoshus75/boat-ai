@@ -1,120 +1,259 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ja">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>BOAT AI | 競艇予想</title>
-<link rel="stylesheet" href="style.css">
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>BOAT AI</title>
+
+  <link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
-<header>
-  <div class="brand">🚤 <span>BOAT AI</span></div>
-  <div class="badge">PROTOTYPE</div>
-</header>
 
-<main>
-  <section class="hero">
-    <div>
-      <p class="eyebrow">AI BOAT RACE ANALYSIS</p>
+  <header class="header">
+
+    <div class="brand">🚤 BOAT AI</div>
+
+    <div class="badge">PROTOTYPE</div>
+
+  </header>
+
+  <main class="container">
+
+    <!-- ヘッダー -->
+
+    <section class="hero">
+
+      <div class="eyebrow">AI BOAT RACE ANALYSIS</div>
+
       <h1>今日の注目レース</h1>
-      <p class="muted">勝率・展示・ST・モーター・オッズを統合したAI予想のプロトタイプです。</p>
-    </div>
-    <div class="date">2026 / 08 / 23</div>
-  </section>
 
-  <section class="race-grid">
-    <button class="race-card active" data-race="戸田 10R" onclick="selectRace(this)">
-      <span>戸田</span><strong>10R</strong><small>AI信頼度 ★★★★★</small>
-    </button>
-    <button class="race-card" data-race="平和島 8R" onclick="selectRace(this)">
-      <span>平和島</span><strong>8R</strong><small>AI信頼度 ★★★★☆</small>
-    </button>
-    <button class="race-card" data-race="江戸川 11R" onclick="selectRace(this)">
-      <span>江戸川</span><strong>11R</strong><small>AI信頼度 ★★★☆☆</small>
-    </button>
-  </section>
+      <p class="description">
 
-  <section class="panel">
-    <div class="panel-title">
-      <div><span class="chip">注目</span><h2 id="raceName">戸田 10R</h2></div>
-      <span class="rating" id="rating">★★★★★</span>
-    </div>
+        勝率・展示・ST・モーターなどをもとに分析する
 
-    <div class="summary">
+        BOAT AIのプロトタイプです。
+
+      </p>
+
+      <div class="date">
+
+        2026 / 08 / 23
+
+      </div>
+
+    </section>
+
+    <!-- レース選択 -->
+
+    <section class="race-section">
+
+      <h2>注目レース</h2>
+
+      <div class="race-grid">
+
+        <button
+
+          type="button"
+
+          class="race-card active"
+
+          data-race="戸田 10R"
+
+        >
+
+          <span class="race-place">戸田</span>
+
+          <strong class="race-number">10R</strong>
+
+        </button>
+
+        <button
+
+          type="button"
+
+          class="race-card"
+
+          data-race="平和島 8R"
+
+        >
+
+          <span class="race-place">平和島</span>
+
+          <strong class="race-number">8R</strong>
+
+        </button>
+
+        <button
+
+          type="button"
+
+          class="race-card"
+
+          data-race="江戸川 11R"
+
+        >
+
+          <span class="race-place">江戸川</span>
+
+          <strong class="race-number">11R</strong>
+
+        </button>
+
+      </div>
+
+    </section>
+
+    <!-- AI予想 -->
+
+    <section class="prediction-panel">
+
+      <div class="panel-header">
+
+        <h2 id="raceName">
+
+          戸田 10R
+
+        </h2>
+
+        <div id="rating" class="rating">
+
+          ★★★★★
+
+        </div>
+
+      </div>
+
+      <!-- 本命 -->
+
       <div class="main-pick">
-        <div class="label">AI本命</div>
-        <div class="number" id="mainPick">1</div>
-        <div class="horse-name" id="pickName">1号艇</div>
-        <div class="confidence" id="confidence">AI勝率 48.2%</div>
+
+        <div class="pick-label">
+
+          AI本命
+
+        </div>
+
+        <div
+
+          id="mainPick"
+
+          class="main-pick-number"
+
+        >
+
+          1号艇
+
+        </div>
+
       </div>
 
-      <div class="metrics">
-        <div><span>期待値</span><b id="ev">A+</b></div>
-        <div><span>展開評価</span><b>強</b></div>
-        <div><span>穴指数</span><b id="hole">76</b></div>
-        <div><span>市場乖離</span><b id="gap">+8.4pt</b></div>
+      <!-- 情報 -->
+
+      <div class="info-list">
+
+        <div class="info-row">
+
+          <span>AI信頼度</span>
+
+          <strong id="confidence">
+
+            ★★★★★
+
+          </strong>
+
+        </div>
+
+        <div class="info-row">
+
+          <span>穴候補</span>
+
+          <strong id="hole">
+
+            4号艇
+
+          </strong>
+
+        </div>
+
+        <div class="info-row">
+
+          <span>AI勝率</span>
+
+          <strong id="winRate">
+
+            48.2%
+
+          </strong>
+
+        </div>
+
       </div>
-    </div>
 
-    <h3>AI勝率</h3>
-    <div id="probabilities" class="probabilities"></div>
+      <!-- コメント -->
 
-    <div class="picks">
-      <div><span class="symbol win">◎</span><b>本命</b><strong id="pick1">1号艇</strong></div>
-      <div><span class="symbol draw">○</span><b>対抗</b><strong id="pick2">2号艇</strong></div>
-      <div><span class="symbol place">▲</span><b>単穴</b><strong id="pick3">3号艇</strong></div>
-      <div><span class="symbol hole">☆</span><b>穴</b><strong id="pick4">4号艇</strong></div>
-    </div>
+      <div class="comment-box">
 
-    <h3>推奨買い目 <span class="muted small">※プロトタイプ</span></h3>
-    <div id="bets" class="bets"></div>
+        <div class="comment-title">
 
-    <div class="note">
-      <b>AIコメント</b>
-      <p id="comment">1号艇のイン戦を中心に評価。展示・STが良好で、オッズとの乖離もプラス。現時点では1号艇を軸にする期待値が高いと判定しています。</p>
-    </div>
-  </section>
+          AIコメント
 
-  <section class="panel">
-    <div class="panel-title"><div><span class="chip">成績</span><h2>バックテスト管理</h2></div></div>
-    <div class="stats">
-      <div><span>予想レース</span><b>1,000</b></div>
-      <div><span>的中率</span><b>31.4%</b></div>
-      <div><span>回収率</span><b>103.8%</b></div>
-      <div><span>最大連敗</span><b>17</b></div>
-    </div>
-    <p class="warning">※上記数値は画面デザイン用の仮データです。実際の競艇データによる実績ではありません。</p>
-  </section>
-</main>
+        </div>
 
-<footer>BOAT AI — 自分専用競艇AI予想アプリ / Prototype</footer>
-<script src="app.js"></script>
-document.addEventListener("DOMContentLoaded", function () {
+        <p id="comment">
 
-  const cards = document.querySelectorAll(".race-card");
+          イン有利を中心に1号艇を本命評価。
 
-  cards.forEach(function (card) {
+          まずは1号艇を軸に展開を考える。
 
-    card.addEventListener("click", function () {
+        </p>
 
-      const raceName = card.getAttribute("data-race");
+      </div>
 
-      if (!raceName) return;
+      <!-- 買い目 -->
 
-      // 注目レース名を変更
+      <div class="bets-box">
 
-      const nameElement = document.getElementById("raceName");
+        <div class="bets-title">
 
-      if (nameElement) {
+          買い目候補
 
-        nameElement.textContent = raceName;
+        </div>
 
-      }
+        <div
 
-      // 選択状態を変更
+          id="bets"
 
-      cards.forEach(function (c) {
+          class="bets-value"
 
-        c.classList.remove("active");
+        >
+
+          1-2-4 / 1-4-2 / 1-2-3
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer>
+
+    ※このサイトはプロトタイプです。
+
+    表示される予想・数値はサンプルです。
+
+  </footer>
+
+  <script src="app.js"></script>
+
 </body>
+
 </html>
