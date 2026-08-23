@@ -69,7 +69,47 @@ function setText(id, text) {
 }
 
 function renderRace(name) {
+function selectRace(card) {
 
+  const raceName = card.getAttribute("data-race");
+
+  if (!raceName) return;
+
+  console.log("タップ:", raceName);
+
+  // 注目レースを変更
+
+  renderRace(raceName);
+
+  // activeを全部外す
+
+  document.querySelectorAll(".race-card").forEach((item) => {
+
+    item.classList.remove("active");
+
+  });
+
+  // タップしたカードをactiveにする
+
+  card.classList.add("active");
+
+  // 注目レースまでスクロール
+
+  const panel = document.querySelector(".panel");
+
+  if (panel) {
+
+    panel.scrollIntoView({
+
+      behavior: "smooth",
+
+      block: "start"
+
+    });
+
+  }
+
+}
   const race = races[name];
 
   if (!race) return;
