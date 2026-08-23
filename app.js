@@ -28,7 +28,23 @@ const races = {
 
     bets:
 
-      "1-2-4 / 1-4-2 / 1-2-3"
+      "1-2-4 / 1-4-2 / 1-2-boats: [
+
+    { number: 1, name: "選手A", score: "48.2%", detail: "1着期待度" },
+
+    { number: 2, name: "選手B", score: "21.6%", detail: "1着期待度" },
+
+    { number: 3, name: "選手C", score: "12.4%", detail: "1着期待度" },
+
+    { number: 4, name: "選手D", score: "9.8%", detail: "1着期待度" },
+
+    { number: 5, name: "選手E", score: "5.1%", detail: "1着期待度" },
+
+    { number: 6, name: "選手F", score: "3.0%", detail: "1着期待度" }
+
+  ]
+
+
 
   },
 
@@ -52,6 +68,23 @@ const races = {
 
       "2-1-3 / 2-3-1 / 1-2-3"
 
+     boats: [
+
+    { number: 1, name: "選手A", score: "48.2%", detail: "1着期待度" },
+
+    { number: 2, name: "選手B", score: "21.6%", detail: "1着期待度" },
+
+    { number: 3, name: "選手C", score: "12.4%", detail: "1着期待度" },
+
+    { number: 4, name: "選手D", score: "9.8%", detail: "1着期待度" },
+
+    { number: 5, name: "選手E", score: "5.1%", detail: "1着期待度" },
+
+    { number: 6, name: "選手F", score: "3.0%", detail: "1着期待度" }
+
+  ]
+
+
   },
 
   "江戸川 11R": {
@@ -73,6 +106,22 @@ const races = {
     bets:
 
       "2-1-3 / 2-3-1 / 1-2-3"
+boats: [
+
+    { number: 1, name: "選手A", score: "48.2%", detail: "1着期待度" },
+
+    { number: 2, name: "選手B", score: "21.6%", detail: "1着期待度" },
+
+    { number: 3, name: "選手C", score: "12.4%", detail: "1着期待度" },
+
+    { number: 4, name: "選手D", score: "9.8%", detail: "1着期待度" },
+
+    { number: 5, name: "選手E", score: "5.1%", detail: "1着期待度" },
+
+    { number: 6, name: "選手F", score: "3.0%", detail: "1着期待度" }
+
+  ]
+
 
   }
 
