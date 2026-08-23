@@ -1026,30 +1026,30 @@ function renderBoats(boats) {
 
 async function init() {
 
-    showToday();
+  showToday();
 
-    const realData = await loadRealData();
+  createRaceButtons();
 
-    if (!realData) {
+  // APIから今日のレースデータを取得
 
-        console.error("レースデータを取得できませんでした");
+  const realData = await loadRealData();
 
-        return;
+  // API取得に失敗した場合
 
-    }
+  if (!realData) {
 
-    createRaceButtons();
+    console.error("レースデータを取得できませんでした");
 
-    // 初期表示
+    return;
 
-    
+  }
+
+  console.log("取得成功:", realData);
+
+  // まず戸田1Rを表示
+
+  renderRace("戸田 1R", realData);
 
 }
 
-document.addEventListener(
-
-    "DOMContentLoaded",
-
-    init
-
-);
+document.addEventListener("DOMContentLoaded", init);
