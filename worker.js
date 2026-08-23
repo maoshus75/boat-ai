@@ -4,7 +4,33 @@ export default {
 
     const url = new URL(request.url);
 
-    // 今日の出走表を取得
+    // CORS
+
+    const corsHeaders = {
+
+      "Access-Control-Allow-Origin": "*",
+
+      "Access-Control-Allow-Methods": "GET, OPTIONS",
+
+      "Access-Control-Allow-Headers": "Content-Type"
+
+    };
+
+    // OPTIONS
+
+    if (request.method === "OPTIONS") {
+
+      return new Response(null, {
+
+        status: 204,
+
+        headers: corsHeaders
+
+      });
+
+    }
+
+    // 今日の出走表
 
     if (url.pathname === "/api/races") {
 
@@ -22,7 +48,9 @@ export default {
 
             JSON.stringify({
 
-              error: "出走表データを取得できませんでした"
+              error: "出走表データを取得できませんでした",
+
+              status: response.status
 
             }),
 
@@ -32,7 +60,9 @@ export default {
 
               headers: {
 
-                "Content-Type": "application/json; charset=utf-8"
+                "Content-Type": "application/json; charset=UTF-8",
+
+                ...corsHeaders
 
               }
 
@@ -44,17 +74,25 @@ export default {
 
         const data = await response.json();
 
-        return new Response(JSON.stringify(data), {
+        return new Response(
 
-          headers: {
+          JSON.stringify(data),
 
-            "Content-Type": "application/json; charset=utf-8",
+          {
 
-            "Access-Control-Allow-Origin": "*"
+            status: 200,
+
+            headers: {
+
+              "Content-Type": "application/json; charset=UTF-8",
+
+              ...corsHeaders
+
+            }
 
           }
 
-        });
+        );
 
       } catch (error) {
 
@@ -74,7 +112,9 @@ export default {
 
             headers: {
 
-              "Content-Type": "application/json; charset=utf-8"
+              "Content-Type": "application/json; charset=UTF-8",
+
+              ...corsHeaders
 
             }
 
@@ -86,7 +126,45 @@ export default {
 
     }
 
-    return new Response("BOAT AI Worker OK");
+    // ヘルスチェック
+
+    if (url.pathname === "/api/health") {
+
+      return new Response(
+
+        JSON.stringify({
+
+          ok: true,
+
+          service: "BOAT AI Worker"
+
+        }),
+
+        {
+
+          status: 200,
+
+          headers: {
+
+            "Content-Type": "application/json; charset=UTF-8",
+
+            ...corsHeaders
+
+          }
+
+        }
+
+      );
+
+    }
+
+    return new Response("BOAT AI Worker", {
+
+      status: 200,
+
+      headers: corsHeaders
+
+    });
 
   }
 
