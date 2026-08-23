@@ -1,60 +1,110 @@
-"use strict";
-
-/* ==========================================
+/* =========================
 
    BOAT AI
 
    レースデータ
 
-========================================== */
+========================= */
 
 const races = {
 
   "戸田 10R": {
 
-  rating: "★★★★★",
+    rating: "★★★★★",
 
-  confidence: "★★★★★",
+    confidence: "★★★★★",
 
-  mainPick: "1号艇",
+    mainPick: 1,
 
-  hole: "4号艇",
+    mainPickName: "1号艇",
 
-  winRate: "48.2%",
+    hole: "4号艇",
 
-  comment:
+    winRate: "48.2%",
 
-    "イン有利を中心に1号艇を本命評価。まずは1号艇を軸に展開を考える。",
+    comment:
 
-  bets:
+      "イン有利を中心に1号艇を本命評価。まずは1号艇を軸に展開を考える。",
 
-    "1-2-4 / 1-4-2 / 1-2-3",
+    bets:
 
-  boats: [
+      "1-2-4 / 1-4-2 / 1-2-3",
 
-    { number: 1, name: "選手A", score: "48.2%" },
+    boats: [
 
-    { number: 2, name: "選手B", score: "21.6%" },
+      {
 
-    { number: 3, name: "選手C", score: "12.4%" },
+        number: 1,
 
-    { number: 4, name: "選手D", score: "9.8%" },
+        name: "選手A",
 
-    { number: 5, name: "選手E", score: "5.1%" },
+        score: 48.2
 
-    { number: 6, name: "選手F", score: "3.0%" }
+      },
 
-  ]
+      {
 
-},
+        number: 2,
 
-  平和島 8R": {
+        name: "選手B",
+
+        score: 21.6
+
+      },
+
+      {
+
+        number: 3,
+
+        name: "選手C",
+
+        score: 12.4
+
+      },
+
+      {
+
+        number: 4,
+
+        name: "選手D",
+
+        score: 9.8
+
+      },
+
+      {
+
+        number: 5,
+
+        name: "選手E",
+
+        score: 5.1
+
+      },
+
+      {
+
+        number: 6,
+
+        name: "選手F",
+
+        score: 3.0
+
+      }
+
+    ]
+
+  },
+
+  "平和島 8R": {
 
     rating: "★★★★☆",
 
     confidence: "★★★★☆",
 
-    mainPick: "2号艇",
+    mainPick: 2,
+
+    mainPickName: "2号艇",
 
     hole: "3号艇",
 
@@ -66,34 +116,83 @@ const races = {
 
     bets:
 
-      "2-1-3 / 2-3-1 / 1-2-3"
+      "2-1-3 / 2-3-1 / 1-2-3",
 
-     boats: [
+    boats: [
 
-    { number: 1, name: "選手A", score: "48.2%", detail: "1着期待度" },
+      {
 
-    { number: 2, name: "選手B", score: "21.6%", detail: "1着期待度" },
+        number: 1,
 
-    { number: 3, name: "選手C", score: "12.4%", detail: "1着期待度" },
+        name: "選手A",
 
-    { number: 4, name: "選手D", score: "9.8%", detail: "1着期待度" },
+        score: 48.2
 
-    { number: 5, name: "選手E", score: "5.1%", detail: "1着期待度" },
+      },
 
-    { number: 6, name: "選手F", score: "3.0%", detail: "1着期待度" }
+      {
 
-  ]
+        number: 2,
 
+        name: "選手B",
+
+        score: 21.6
+
+      },
+
+      {
+
+        number: 3,
+
+        name: "選手C",
+
+        score: 12.4
+
+      },
+
+      {
+
+        number: 4,
+
+        name: "選手D",
+
+        score: 9.8
+
+      },
+
+      {
+
+        number: 5,
+
+        name: "選手E",
+
+        score: 5.1
+
+      },
+
+      {
+
+        number: 6,
+
+        name: "選手F",
+
+        score: 3.0
+
+      }
+
+    ]
 
   },
 
-　  "江戸川 11R": {
+  "江戸川 11R": {
 
     rating: "★★★☆☆",
 
     confidence: "★★★☆☆",
 
-    mainPick: "2号艇",
+    mainPick: 2,
+
+    mainPickName: "2号艇",
 
     hole: "3号艇",
 
@@ -101,41 +200,229 @@ const races = {
 
     comment:
 
-      "混戦。2号艇を軸候補として評価し、3号艇の絡みにも注意。",
+      "混戦。2号艇を軸候補として評価し、3号艇の絡みにも注目。",
 
     bets:
 
-      "2-1-3 / 2-3-1 / 1-2-3"
-boats: [
+      "2-1-3 / 2-3-1 / 1-2-3",
 
-    { number: 1, name: "選手A", score: "48.2%", detail: "1着期待度" },
+    boats: [
 
-    { number: 2, name: "選手B", score: "21.6%", detail: "1着期待度" },
+      {
 
-    { number: 3, name: "選手C", score: "12.4%", detail: "1着期待度" },
+        number: 1,
 
-    { number: 4, name: "選手D", score: "9.8%", detail: "1着期待度" },
+        name: "選手A",
 
-    { number: 5, name: "選手E", score: "5.1%", detail: "1着期待度" },
+        score: 48.2
 
-    { number: 6, name: "選手F", score: "3.0%", detail: "1着期待度" }
+      },
 
-  ]
+      {
 
+        number: 2,
+
+        name: "選手B",
+
+        score: 21.6
+
+      },
+
+      {
+
+        number: 3,
+
+        name: "選手C",
+
+        score: 12.4
+
+      },
+
+      {
+
+        number: 4,
+
+        name: "選手D",
+
+        score: 9.8
+
+      },
+
+      {
+
+        number: 5,
+
+        name: "選手E",
+
+        score: 5.1
+
+      },
+
+      {
+
+        number: 6,
+
+        name: "選手F",
+
+        score: 3.0
+
+      }
+
+    ]
 
   }
 
 };
 
-/* ==========================================
+/* =========================
 
-   画面を書き換える
+   今日の日付
 
-========================================== */
+========================= */
+
+function showToday() {
+
+  const todayElement =
+
+    document.getElementById("today");
+
+  const today = new Date();
+
+  const year =
+
+    today.getFullYear();
+
+  const month =
+
+    String(today.getMonth() + 1)
+
+      .padStart(2, "0");
+
+  const day =
+
+    String(today.getDate())
+
+      .padStart(2, "0");
+
+  todayElement.textContent =
+
+    `${year}/${month}/${day}`;
+
+}
+
+/* =========================
+
+   レースボタン作成
+
+========================= */
+
+function createRaceButtons() {
+
+  const container =
+
+    document.getElementById("raceButtons");
+
+  container.innerHTML = "";
+
+  Object.keys(races).forEach(
+
+    (raceName, index) => {
+
+      const button =
+
+        document.createElement("button");
+
+      button.type = "button";
+
+      button.className =
+
+        "race-card";
+
+      if (index === 0) {
+
+        button.classList.add("active");
+
+      }
+
+      const parts =
+
+        raceName.split(" ");
+
+      const place =
+
+        parts[0];
+
+      const raceNumber =
+
+        parts[1];
+
+      button.innerHTML = `
+
+        <span class="race-place">
+
+          ${place}
+
+        </span>
+
+        <strong class="race-number">
+
+          ${raceNumber}
+
+        </strong>
+
+      `;
+
+      button.addEventListener(
+
+        "click",
+
+        () => {
+
+          document
+
+            .querySelectorAll(".race-card")
+
+            .forEach(card => {
+
+              card.classList.remove(
+
+                "active"
+
+              );
+
+            });
+
+          button.classList.add(
+
+            "active"
+
+          );
+
+          renderRace(raceName);
+
+        }
+
+      );
+
+      container.appendChild(button);
+
+    }
+
+  );
+
+}
+
+/* =========================
+
+   レース表示
+
+========================= */
 
 function renderRace(raceName) {
 
-  const race = races[raceName];
+  const race =
+
+    races[raceName];
 
   if (!race) {
 
@@ -151,198 +438,188 @@ function renderRace(raceName) {
 
   }
 
-  document.getElementById("raceName").textContent =
+  /* レース名 */
+
+  document
+
+    .getElementById("raceName")
+
+    .textContent =
 
     raceName;
 
-  document.getElementById("rating").textContent =
+  /* 評価 */
+
+  document
+
+    .getElementById("rating")
+
+    .textContent =
 
     race.rating;
 
-  document.getElementById("confidence").textContent =
+  /* 本命 */
 
-    race.confidence;
+  document
 
-  document.getElementById("mainPick").textContent =
+    .getElementById("mainPick")
+
+    .textContent =
 
     race.mainPick;
 
-  document.getElementById("hole").textContent =
+  document
+
+    .getElementById("mainPickName")
+
+    .textContent =
+
+    race.mainPickName;
+
+  /* 穴 */
+
+  document
+
+    .getElementById("hole")
+
+    .textContent =
 
     race.hole;
 
-  document.getElementById("winRate").textContent =
+  /* 勝率 */
+
+  document
+
+    .getElementById("winRate")
+
+    .textContent =
 
     race.winRate;
 
-  document.getElementById("comment").textContent =
+  /* コメント */
+
+  document
+
+    .getElementById("comment")
+
+    .textContent =
 
     race.comment;
 
-  document.getElementById("bets").textContent =
+  /* 買い目 */
+
+  document
+
+    .getElementById("bets")
+
+    .textContent =
 
     race.bets;
 
-   /* =========================
+  /* 6艇 */
 
-   6艇AI分析を表示
+  renderBoats(race.boats);
+
+}
+
+/* =========================
+
+   6艇表示
 
 ========================= */
 
-const boatsList =
+function renderBoats(boats) {
 
-  document.getElementById("boatsList");
+  const container =
 
-boatsList.innerHTML = "";
+    document.getElementById(
 
-race.boats.forEach(function(boat) {
+      "boatsList"
 
-  const row =
+    );
 
-    document.createElement("div");
+  container.innerHTML = "";
 
-  row.className = "boat-row";
+  boats.forEach(boat => {
 
-  row.innerHTML = `
+    const card =
 
-    <div class="boat-number">
+      document.createElement("div");
 
-      ${boat.number}
+    card.className =
 
-    </div>
+      "boat-card";
 
-    <div>
+    card.innerHTML = `
 
-      <div class="boat-name">
+      <div class="boat-number">
 
-        ${boat.name}
-
-      </div>
-
-      <div class="boat-details">
-
-        ${boat.detail}
+        ${boat.number}
 
       </div>
 
-    </div>
+      <div class="boat-info">
 
-    <div class="boat-score">
+        <div class="boat-name">
 
-      <div class="boat-score-number">
+          ${boat.name}
 
-        ${boat.score}
+        </div>
+
+        <div class="boat-score">
+
+          AI評価 ${boat.score}%
+
+        </div>
 
       </div>
 
-      <div class="boat-score-label">
+      <div class="boat-bar">
 
-        AI勝率
+        <div
+
+          class="boat-bar-inner"
+
+          style="width: ${boat.score}%">
+
+        </div>
 
       </div>
 
-    </div>
+    `;
 
-  `;
+    container.appendChild(card);
 
-  boatsList.appendChild(row);
-
-});
-   
-}
-
-/* ==========================================
-
-   レースボタン
-
-========================================== *
-
-function setupRaceButtons() {
-
-    const cards = document.querySelectorAll(".race-card");
-
-    cards.forEach(function(card) {
-
-        card.addEventListener("click", function() {
-
-            let raceName = card.getAttribute("data-race");
-
-            // data-race が設定されていない場合は画面の文字から判定
-
-            if (!raceName) {
-
-                const text = card.innerText || "";
-
-                if (text.includes("戸田")) {
-
-                    raceName = "戸田 10R";
-
-                } else if (text.includes("平和島")) {
-
-                    raceName = "平和島 8R";
-
-                } else if (text.includes("江戸川")) {
-
-                    raceName = "江戸川 11R";
-
-                }
-
-            }
-
-            console.log("選択されたレース:", raceName);
-
-            // レース名が取得できなかった場合
-
-            if (!raceName) {
-
-                console.error("レース名を取得できませんでした");
-
-                return;
-
-            }
-
-            // 全レースの選択状態を解除
-
-            cards.forEach(function(c) {
-
-                c.classList.remove("active");
-
-            });
-
-            // 押したレースを選択状態にする
-
-            card.classList.add("active");
-
-            // レース内容を表示
-
-            renderRace(raceName);
-
-        });
-
-    });
+  });
 
 }
 
-/* ==========================================
+/* =========================
 
-   ページ読み込み後に開始
+   初期化
 
-========================================== */
+========================= */
+
+function init() {
+
+  showToday();
+
+  createRaceButtons();
+
+  renderRace("戸田 10R");
+
+}
+
+/* =========================
+
+   起動
+
+========================= */
 
 document.addEventListener(
 
   "DOMContentLoaded",
 
-  function() {
-
-    setupRaceButtons();
-
-    renderRace(
-
-      "戸田 10R"
-
-    );
-
-  }
+  init
 
 );
