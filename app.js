@@ -186,7 +186,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   });
 
-});const autoRaces = ["戸田 10R", "平和島 8R", "江戸川 11R"];
+});
+const autoRaces = ["戸田 10R", "平和島 8R", "江戸川 11R"];
 
 let autoIndex = 0;
 
