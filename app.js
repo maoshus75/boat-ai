@@ -121,15 +121,27 @@ function renderRace(name) {
 
   document.querySelectorAll(".race-card").forEach(card => {
 
-  card.addEventListener("click", function () {
+  card.addEventListener("click", function() {
 
-    const raceName = this.dataset.race;
+    const raceName =
 
-    if (!raceName) return;
+      this.dataset.race || detectRaceFromCard(this);
+
+    if (!raceName) {
+
+      console.log("レース名を取得できません");
+
+      return;
+
+    }
 
     // レース内容を切り替える
 
     renderRace(raceName);
+
+  });
+
+});
 
   
 
