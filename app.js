@@ -418,6 +418,37 @@ function createRaceButtons() {
 
 ========================= */
 
+async function loadRealData() {
+
+  try {
+
+    const response = await fetch(
+
+      "https://boatraceopenapi.github.io/api/v1/today.json"
+
+    );
+
+    if (!response.ok) {
+
+      throw new Error("データ取得失敗");
+
+    }
+
+    const data = await response.json();
+
+    console.log("今日のレースデータ:", data);
+
+    return data;
+
+  } catch (error) {
+
+    console.error("レースデータを取得できません:", error);
+
+    return null;
+
+  }
+
+}
 function renderRace(raceName) {
 
   const race =
