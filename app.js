@@ -73,7 +73,7 @@ function renderRace(name) {
   const race = races[name];
 
   if (!race) return;
-
+  setText("raceName", name);
   setText("rating", race.rating);
 
   setText("hole", race.hole);
