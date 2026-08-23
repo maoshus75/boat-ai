@@ -436,6 +436,8 @@ async function loadRealData() {
 
     const data = await response.json();
 
+     alert("API取得成功\n" + JSON.stringify(data).slice(0, 2000));
+     
     console.log("今日のレースデータ:", data);
 
      alert(JSON.stringify(data).slice(0, 1000));
