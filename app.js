@@ -576,7 +576,7 @@ function renderRace(raceName, data) {
 
   // 戸田 = 会場番号 2
 
-  const toda = data.programs.stadiums["2"];
+  const toda = data.programs.stadiums["3"];
 
   if (!toda || !toda.races) {
 
