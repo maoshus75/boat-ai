@@ -2,8 +2,6 @@ const races = {
 
   "戸田 10R": {
 
-    probs: [48.2, 17.6, 13.9, 9.8, 6.1, 4.4],
-
     rating: "★★★★★",
 
     confidence: "★★★★★",
@@ -14,73 +12,79 @@ const races = {
 
     comment: "イン有利を中心に1号艇を本命。相手筆頭は2号艇。展開次第で4号艇の浮上に注意。",
 
-    bets: "1-2-4 / 1-4-2 / 1-2-3"
+    bets: "1-2-4 / 1-4-2 / 1-2-3",
+
+    probs: [48.2, 17.6, 13.9, 9.8, 6.1, 4.4]
 
   },
 
   "平和島 8R": {
 
-    probs: [34.5, 20.1, 17.3, 12.4, 9.0, 6.7],
-
     rating: "★★★★☆",
 
     confidence: "★★★★☆",
 
-    mainPick: "1号艇",
+    mainPick: "2号艇",
 
     hole: "3号艇",
 
-    comment: "1号艇を軸に評価。2号艇と3号艇の連下争いに注目。",
+    comment: "平和島8Rは2号艇を中心に評価。1号艇との組み合わせを本線に、3号艇の食い込みにも注意。",
 
-    bets: "1-2-3 / 1-3-2 / 2-1-3"
+    bets: "2-1-3 / 2-3-1 / 1-2-3",
+
+    probs: [34.5, 20.1, 17.3, 12.4, 9.0, 6.7]
 
   },
 
   "江戸川 11R": {
 
-    probs: [29.1, 23.8, 18.2, 13.5, 8.7, 6.7],
-
     rating: "★★★☆☆",
 
     confidence: "★★★☆☆",
 
-    mainPick: "1号艇",
+    mainPick: "2号艇",
 
-    hole: "2号艇",
+    hole: "3号艇",
 
-    comment: "混戦。1号艇中心だが2号艇の差し展開には警戒。",
+    comment: "江戸川11Rは混戦。2号艇を軸候補として評価し、3号艇の展開待ちにも警戒。",
 
-    bets: "1-2-3 / 2-1-3 / 1-3-2"
+    bets: "2-1-3 / 2-3-1 / 1-2-3",
+
+    probs: [29.1, 23.8, 18.2, 13.5, 8.7, 6.7]
 
   }
 
 };
 
-function setText(id, value) {
+function setText(id, text) {
 
-  const el = document.getElementById(id);
+  const element = document.getElementById(id);
 
-  if (el) el.textContent = value;
+  if (element) {
+
+    element.textContent = text;
+
+  }
 
 }
 
-function render(name) {
+function renderRace(name) {
 
-  const r = races[name];
+  const race = races[name];
 
-  if (!r) return;
+  if (!race) return;
 
-  setText("rating", r.rating);
+  setText("rating", race.rating);
 
-  setText("hole", r.hole);
+  setText("hole", race.hole);
 
-  setText("mainPick", r.mainPick);
+  setText("mainPick", race.mainPick);
 
-  setText("confidence", "AI信頼度 " + r.confidence);
+  setText("confidence", "AI信頼度 " + race.confidence);
 
-  setText("comment", r.comment);
+  setText("comment", race.comment);
 
-  setText("bets", r.bets);
+  setText("bets", race.bets);
 
   const probability = document.getElementById("probability");
 
@@ -88,7 +92,7 @@ function render(name) {
 
     probability.innerHTML = "";
 
-    r.probs.forEach((value, index) => {
+    race.probs.forEach((value, index) => {
 
       const row = document.createElement("div");
 
@@ -96,11 +100,7 @@ function render(name) {
 
       row.innerHTML = `
 
-        <div class="prob-label">
-
-          ${index + 1}号艇
-
-        </div>
+        <div class="prob-label">${index + 1}号艇</div>
 
         <div class="prob-bar">
 
@@ -108,11 +108,7 @@ function render(name) {
 
         </div>
 
-        <div class="prob-value">
-
-          ${value}%
-
-        </div>
+        <div class="prob-value">${value}%</div>
 
       `;
 
@@ -122,27 +118,67 @@ function render(name) {
 
   }
 
+  document.querySelectorAll(".race-card").forEach(card => {
+
+    card.classList.remove("active");
+
+  });
+
+}
+
+function detectRaceFromCard(card) {
+
+  const text = card.innerText || "";
+
+  if (text.includes("戸田") && text.includes("10R")) {
+
+    return "戸田 10R";
+
+  }
+
+  if (text.includes("平和島") && text.includes("8R")) {
+
+    return "平和島 8R";
+
+  }
+
+  if (text.includes("江戸川") && text.includes("11R")) {
+
+    return "江戸川 11R";
+
+  }
+
+  return null;
+
 }
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  render("戸田 10R");
+  renderRace("戸田 10R");
 
   document.querySelectorAll(".race-card").forEach(card => {
 
     card.addEventListener("click", () => {
 
-      const name = card.dataset.race;
+      const raceName =
 
-      if (name && races[name]) {
+        card.dataset.race ||
 
-        render(name);
+        detectRaceFromCard(card);
 
-        document.querySelectorAll(".race-card")
+      if (raceName) {
 
-          .forEach(c => c.classList.remove("active"));
+        renderRace(raceName);
 
         card.classList.add("active");
+
+        window.scrollTo({
+
+          top: document.body.scrollHeight,
+
+          behavior: "smooth"
+
+        });
 
       }
 
