@@ -430,13 +430,29 @@ async function loadRealData() {
 
     if (!response.ok) {
 
-      throw new Error("データ取得失敗");
+      throw new Error(`データ取得失敗: ${response.status}`);
 
     }
 
     const data = await response.json();
 
     console.log("今日のレースデータ:", data);
+
+    // APIデータが存在するか確認
+
+    if (
+
+      !data ||
+
+      !data.programs ||
+
+      !data.programs.stadiums
+
+    ) {
+
+      throw new Error("レースデータの形式が想定と違います");
+
+    }
 
     return data;
 
