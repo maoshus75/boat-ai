@@ -722,6 +722,25 @@ const second = ranked[1];
 
 const third = ranked[2];
 
+   // 勝負レース判定
+
+let raceLevel = "△ 見送り推奨";
+
+const topScore = main?.score || 0;
+
+const secondScore = second?.score || 0;
+
+const scoreGap = topScore - secondScore;
+
+if (topScore >= 85 && scoreGap >= 8) {
+
+  raceLevel = "🔥 勝負レース";
+
+} else if (topScore >= 75 && scoreGap >= 4) {
+
+  raceLevel = "○ 買い候補";
+
+}
 // 画面に反映
 
 document.getElementById("mainPick").textContent =
