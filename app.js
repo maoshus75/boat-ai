@@ -732,11 +732,43 @@ const secondScore = second?.score || 0;
 
 const scoreGap = topScore - secondScore;
 
-if (topScore >= 85 && scoreGap >= 8) {
+// 1号艇のAI評価
+
+const boat1 = boats.find(boat => Number(boat.number) === 1);
+
+const boat1Score = boat1?.score || 0;
+
+// 本命が1号艇か
+
+const mainIsBoat1 = Number(main?.number) === 1;
+
+// 勝負レース判定
+
+if (
+
+  topScore >= 85 &&
+
+  scoreGap >= 8 &&
+
+  (
+
+    mainIsBoat1 ||
+
+    boat1Score >= 75
+
+  )
+
+) {
 
   raceLevel = "🔥 勝負レース";
 
-} else if (topScore >= 75 && scoreGap >= 4) {
+} else if (
+
+  topScore >= 75 &&
+
+  scoreGap >= 4
+
+) {
 
   raceLevel = "○ 買い候補";
 
