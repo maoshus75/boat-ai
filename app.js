@@ -804,9 +804,21 @@ if (raceLevelEl) {
 
   `${main.number}号艇 ${main.name}を本命評価。AI評価${main.score}点で6艇中トップ。`;
 
-document.getElementById("bets").textContent =
+const betsEl = document.getElementById("bets");
 
-  `${main.number}-${second.number}-${third.number} / ${main.number}-${third.number}-${second.number}`;
+if (raceLevel === "△ 見送り推奨") {
+
+  betsEl.textContent = "見送り";
+
+} else {
+
+  betsEl.textContent =
+
+    `${main.number}-${second.number}-${third.number} / ` +
+
+    `${main.number}-${third.number}-${second.number}`;
+
+}
   renderBoats(boats);
 
 }
