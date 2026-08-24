@@ -32,37 +32,74 @@ const races = {
 
       "1-2-4 / 1-4-2 / 1-2-3",
 
-    boats: [
+    
 
       {
 
-        number: 1,
+  number: 1,
 
-        name: "選手A",
+  name: "選手A",
 
-        score: 48.2
+  class: "",
 
-      },
+  branch: "",
 
-      {
+  avgST: 0,
 
-        number: 2,
+  winRate: 0,
 
-        name: "選手B",
+  motor2Rate: 0,
 
-        score: 21.6
+  exhibitionTime: 0,
 
-      },
+  score: 48.2
 
-      {
+},
 
-        number: 3,
+     {
 
-        name: "選手C",
+  number: 2,
 
-        score: 12.4
+  name: "選手B",
 
-      },
+  class: "",
+
+  branch: "",
+
+  avgST: 0,
+
+  winRate: 0,
+
+  motor2Rate: 0,
+
+  exhibitionTime: 0,
+
+  score: 21.6
+
+},   
+
+{
+
+  number: 3,
+
+  name: "選手C",
+
+  class: "",
+
+  branch: "",
+
+  avgST: 0,
+
+  winRate: 0,
+
+  motor2Rate: 0,
+
+  exhibitionTime: 0,
+
+  score: 12.4
+
+},
+      
 
       {
 
