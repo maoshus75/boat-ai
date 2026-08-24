@@ -729,7 +729,8 @@ document.getElementById("hole").textContent =
 
 document.getElementById("winRate").textContent =
 
-  `${main.score}%`;
+  `${main.score}点
+  `;
 
 document.getElementById("comment").textContent =
 
