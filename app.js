@@ -774,8 +774,6 @@ if (
 
 }
 
-   raceLevel = "△ 見送り推奨";
-   
 // 画面に反映
 
 document.getElementById("mainPick").textContent =
