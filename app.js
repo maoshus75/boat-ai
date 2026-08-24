@@ -625,33 +625,81 @@ function renderRace(raceName, data) {
 
     name: racer.name,
 
-    score: Math.round(
+  score: Math.round(
 
-  (racer.national_win_rate || 0) * 8 +
+  // 全国勝率
 
-  (racer.local_win_rate || 0) * 5 +
+  (racer.national_win_rate || 0) * 7 +
 
-  (racer.motor_top_2_percent || 0) * 0.1 +
+  // 当地勝率
 
-  (racer.boat_top_2_percent || 0) * 0.1 +
+  (racer.local_win_rate || 0) * 4 +
 
-  // 平均ST補正（小さいほど高評価）
+  // モーター2連率
 
-  // 平均ST補正（小さいほど高評価・最大5点）
+  (racer.motor_top_2_percent || 0) * 0.15 +
 
-Math.max(
+  // ボート2連率
 
-  0,
+  (racer.boat_top_2_percent || 0) * 0.08 +
 
-  Math.min(
+  // 平均ST補正（最大5点）
 
-    5,
+  Math.max(
 
-    (0.25 - (racer.average_start_timing || 0.25)) * 50
+    0,
+
+    Math.min(
+
+      5,
+
+      (0.25 - (racer.average_start_timing || 0.25)) * 50
+
+    )
+
+  ) +
+
+  // 級別補正
+
+  (
+
+    racer.rank_number_source === "A1" ? 8 :
+
+    racer.rank_number_source === "A2" ? 5 :
+
+    racer.rank_number_source === "B1" ? 2 :
+
+    racer.rank_number_source === "B2" ? 0 :
+
+    0
+
+  ) +
+
+  // F・L補正
+
+  - ((racer.flying_count || 0) * 5)
+
+  - ((racer.late_count || 0) * 3) +
+
+  // コース補正
+
+  (
+
+    racer.entry_number === 1 ? 14 :
+
+    racer.entry_number === 2 ? 7 :
+
+    racer.entry_number === 3 ? 4 :
+
+    racer.entry_number === 4 ? 2 :
+
+    racer.entry_number === 5 ? 0 :
+
+    -2
 
   )
 
-) +
+)
 
        // 級別補正
 
