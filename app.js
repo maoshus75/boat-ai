@@ -772,6 +772,10 @@ if (
 
   raceLevel = "○ 買い候補";
 
+} else {
+
+  raceLevel = "△ 見送り推奨";
+
 }
 
 // 画面に反映
@@ -801,10 +805,29 @@ if (raceLevelEl) {
 
 }
 
-   document.getElementById("comment").textContent =
+   let aiComment = "";
 
-  `${main.number}号艇 ${main.name}を本命評価。AI評価${main.score}点で6艇中トップ。`;
+if (raceLevel === "🔥 勝負レース") {
 
+  aiComment =
+
+    `${main.number}号艇 ${main.name}を本命評価。AI評価${main.score}点。上位との差も大きく、勝負レース判定。`;
+
+} else if (raceLevel === "○ 買い候補") {
+
+  aiComment =
+
+    `${main.number}号艇 ${main.name}を本命評価。AI評価${main.score}点。買い候補として評価。`;
+
+} else {
+
+  aiComment =
+
+    `${main.number}号艇 ${main.name}がAI評価${main.score}点でトップ。ただし上位との差が小さいため見送り推奨。`;
+
+}
+
+document.getElementById("comment").textContent = aiComment;
 const betsEl = document.getElementById("bets");
 
 if (raceLevel === "△ 見送り推奨") {
