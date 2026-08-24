@@ -804,20 +804,54 @@ if (raceLevelEl) {
   raceLevelEl.textContent = raceLevel;
 
 }
+const strengths = [];
 
+if ((main.national_win_rate || 0) >= 6) {
+
+  strengths.push("全国勝率");
+
+}
+
+if ((main.local_win_rate || 0) >= 6) {
+
+  strengths.push("当地勝率");
+
+}
+
+if ((main.motor_top_2_percent || 0) >= 40) {
+
+  strengths.push("モーター");
+
+}
+
+if ((main.boat_top_2_percent || 0) >= 40) {
+
+  strengths.push("ボート");
+
+}
+
+if ((main.average_start_timing || 1) <= 0.15) {
+
+  strengths.push("スタート");
+
+}
+   const strengthText =
+
+  strengths.length > 0 ? strengths.join("・") : "総合力";
    let aiComment = "";
 
 if (raceLevel === "🔥 勝負レース") {
 
   aiComment =
 
-    `${main.number}号艇 ${main.name}を本命評価。AI評価${main.score}点。上位との差も大きく、勝負レース判定。`;
+   `${main.number}号艇 ${main.name}を本命評価。AI評価${main.score}点。${strengthText}を高く評価。上位との差も大きく、勝負レース判定。`;
 
 } else if (raceLevel === "○ 買い候補") {
 
-  aiComment =
+ 
+   aiComment =
 
-    `${main.number}号艇 ${main.name}を本命評価。AI評価${main.score}点。買い候補として評価。`;
+  `${main.number}号艇 ${main.name}を本命評価。AI評価${main.score}点。${strengthText}を高く評価し、買い候補と判断。`;
 
 } else {
 
