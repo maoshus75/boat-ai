@@ -760,7 +760,13 @@ document.getElementById("winRate").textContent =
   `${main.score}点
   `;
 
-   document.getElementById("raceLevel")?.textContent = raceLevel;
+   const raceLevelEl = document.getElementById("raceLevel");
+
+if (raceLevelEl) {
+
+  raceLevelEl.textContent = raceLevel;
+
+}
 
    document.getElementById("comment").textContent =
 
