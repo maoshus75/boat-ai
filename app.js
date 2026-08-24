@@ -440,6 +440,13 @@ async function loadRealData() {
 
      alert("API取得成功\n" + JSON.stringify(data).slice(0, 1000));
 
+     const firstStadiumKey = Object.keys(data.programs.stadiums)[0];
+
+const firstRace = data.programs.stadiums[firstStadiumKey].races["1"];
+
+const firstRacer = firstRace.racers["1"];
+
+alert(JSON.stringify(firstRacer, null, 2));
      console.log("今日のレースデータ:", data);
 
    
