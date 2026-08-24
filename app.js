@@ -760,7 +760,9 @@ document.getElementById("winRate").textContent =
   `${main.score}点
   `;
 
-document.getElementById("comment").textContent =
+   document.getElementById("raceLevel").textContent = raceLevel;
+
+   document.getElementById("comment").textContent =
 
   `${main.number}号艇 ${main.name}を本命評価。AI評価${main.score}点で6艇中トップ。`;
 
