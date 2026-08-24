@@ -748,7 +748,7 @@ if (
 
   topScore >= 80 &&
 
-  scoreGap >= 8 &&
+  scoreGap >= 7 &&
 
   (
 
