@@ -637,13 +637,27 @@ function renderRace(raceName, data) {
 
   // 平均ST補正（小さいほど高評価）
 
-  Math.max(0, (0.25 - (racer.average_start_timing || 0.25)) * 100) +
+  // 平均ST補正（小さいほど高評価・最大5点）
+
+Math.max(
+
+  0,
+
+  Math.min(
+
+    5,
+
+    (0.25 - (racer.average_start_timing || 0.25)) * 50
+
+  )
+
+) +
 
        // 級別補正
 
 (
 
-  racer.rank_number_source === "A1" ? 8 :
+  racerで.rank_number_source === "A1" ? 8 :
 
   racer.rank_number_source === "A2" ? 5 :
 
