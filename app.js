@@ -654,6 +654,11 @@ function renderRace(raceName, data) {
   0
 
 ) +
+       // F・L補正
+
+- ((racer.flying_count || 0) * 5)
+
+- ((racer.late_count || 0) * 3) +
   // コース補正
 
   (
