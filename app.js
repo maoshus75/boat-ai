@@ -639,6 +639,21 @@ function renderRace(raceName, data) {
 
   Math.max(0, (0.25 - (racer.average_start_timing || 0.25)) * 100) +
 
+       // 級別補正
+
+(
+
+  racer.rank_number_source === "A1" ? 8 :
+
+  racer.rank_number_source === "A2" ? 5 :
+
+  racer.rank_number_source === "B1" ? 2 :
+
+  racer.rank_number_source === "B2" ? 0 :
+
+  0
+
+) +
   // コース補正
 
   (
