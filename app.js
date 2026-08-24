@@ -811,6 +811,16 @@ if (raceLevel === "△ 見送り推奨") {
 
   betsEl.textContent = "見送り";
 
+} else if (raceLevel === "🔥 勝負レース") {
+
+  betsEl.textContent =
+
+    `${main.number}-${second.number}-${third.number} / ` +
+
+    `${main.number}-${third.number}-${second.number} / ` +
+
+    `${second.number}-${main.number}-${third.number}`;
+
 } else {
 
   betsEl.textContent =
