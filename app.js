@@ -734,7 +734,7 @@ document.getElementById("winRate").textContent =
 
 document.getElementById("comment").textContent =
 
-  `${main.number}号艇 ${main.name}を本命評価。AI評価${main.score}%で6艇中トップ。`;
+  `${main.number}号艇 ${main.name}を本命評価。AI評価${main.score}点で6艇中トップ。`;
 
 document.getElementById("bets").textContent =
 
