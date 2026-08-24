@@ -843,6 +843,37 @@ if ((main.average_start_timing || 1) <= 0.15) {
   strengths.push("スタート");
 
 }
+
+const cautions = [];
+
+if ((main.average_start_timing || 0) >= 0.20) {
+
+  cautions.push("スタートにやや不安");
+
+}
+
+if ((main.motor_top_2_percent || 0) < 30) {
+
+  cautions.push("モーター評価は控えめ");
+
+}
+
+if ((main.boat_top_2_percent || 0) < 30) {
+
+  cautions.push("ボート評価は控えめ");
+
+}
+
+if ((main.local_win_rate || 0) < 5) {
+
+  cautions.push("当地成績はやや弱め");
+
+}
+
+const cautionText =
+
+  cautions.length > 0 ? cautions[0] : "大きな不安材料は少ない";
+   
    const strengthText =
 
   strengths.length > 0 ? strengths.join("・") : "総合力";
@@ -852,20 +883,20 @@ if (raceLevel === "🔥 勝負レース") {
 
   aiComment =
 
-   `${main.number}号艇 ${main.name}を本命評価。AI評価${main.score}点。${strengthText}を高く評価。上位との差も大きく、勝負レース判定。`;
+   `${main.number}号艇 ${main.name}を本命評価。AI評価${main.score}点。${strengthText}を高く評価。上位との差も大きく、勝負レース判定。 注意点：${cautionText}`;
 
 } else if (raceLevel === "○ 買い候補") {
 
  
    aiComment =
 
-  `${main.number}号艇 ${main.name}を本命評価。AI評価${main.score}点。${strengthText}を高く評価し、買い候補と判断。`;
+  `${main.number}号艇 ${main.name}を本命評価。AI評価${main.score}点。${strengthText}を高く評価し、買い候補と判断。 注意点：${cautionText}`;
 
 } else {
 
   aiComment =
 
-    `${main.number}号艇 ${main.name}がAI評価${main.score}点でトップ。ただし上位との差が小さいため見送り推奨。`;
+    `${main.number}号艇 ${main.name}がAI評価${main.score}点でトップ。ただし上位との差が小さいため見送り推奨。 注意点：${cautionText}`;
 
 }
 
