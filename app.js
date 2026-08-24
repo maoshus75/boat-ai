@@ -657,7 +657,7 @@ Math.max(
 
 (
 
-  racerで.rank_number_source === "A1" ? 8 :
+  racer.rank_number_source === "A1" ? 8 :
 
   racer.rank_number_source === "A2" ? 5 :
 
