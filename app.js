@@ -746,7 +746,7 @@ const mainIsBoat1 = Number(main?.number) === 1;
 
 if (
 
-  topScore >= 85 &&
+  topScore >= 80 &&
 
   scoreGap >= 8 &&
 
