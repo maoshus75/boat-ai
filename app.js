@@ -701,45 +701,6 @@ function renderRace(raceName, data) {
 
 )
 
-       // 級別補正
-
-(
-
-  racer.rank_number_source === "A1" ? 8 :
-
-  racer.rank_number_source === "A2" ? 5 :
-
-  racer.rank_number_source === "B1" ? 2 :
-
-  racer.rank_number_source === "B2" ? 0 :
-
-  0
-
-) +
-       // F・L補正
-
-- ((racer.flying_count || 0) * 5)
-
-- ((racer.late_count || 0) * 3) +
-  // コース補正
-
-  (
-
-    racer.entry_number === 1 ? 12 :
-
-    racer.entry_number === 2 ? 6 :
-
-    racer.entry_number === 3 ? 4 :
-
-    racer.entry_number === 4 ? 2 :
-
-    racer.entry_number === 5 ? 0 :
-
-    -2
-
-  )
-
-)
 
   }));
    
