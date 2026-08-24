@@ -624,7 +624,15 @@ function renderRace(raceName, data) {
     number: racer.entry_number,
 
     name: racer.name,
+national_win_rate: racer.national_win_rate,
 
+local_win_rate: racer.local_win_rate,
+
+motor_top_2_percent: racer.motor_top_2_percent,
+
+boat_top_2_percent: racer.boat_top_2_percent,
+
+average_start_timing: racer.average_start_timing,
   score: Math.min(100, Math.max(0, Math.round(
 
   // 全国勝率
