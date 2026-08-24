@@ -602,7 +602,7 @@ function renderRace(raceName, data) {
     console.error("指定レースがありません:", raceName);
 
     return;
-
+す
   }
 
   console.log("表示するレース:", race);
@@ -634,6 +634,10 @@ function renderRace(raceName, data) {
   (racer.motor_top_2_percent || 0) * 0.1 +
 
   (racer.boat_top_2_percent || 0) * 0.1 +
+
+  // 平均ST補正（小さいほど高評価）
+
+  Math.max(0, (0.25 - (racer.average_start_timing || 0.25)) * 100) +
 
   // コース補正
 
