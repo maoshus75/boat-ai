@@ -702,7 +702,7 @@ function renderRace(raceName, data) {
 )
 
 
-}))));
+))}));
    
 // AI評価順に並べる
 
