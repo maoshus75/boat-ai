@@ -625,7 +625,7 @@ function renderRace(raceName, data) {
 
     name: racer.name,
 
-  score: Math.round(
+  score: Math.min(100, Math.max(0, Math.round(
 
   // 全国勝率
 
@@ -702,7 +702,7 @@ function renderRace(raceName, data) {
 )
 
 
-  }));
+}))); 
    
 // AI評価順に並べる
 
@@ -746,9 +746,9 @@ const mainIsBoat1 = Number(main?.number) === 1;
 
 if (
 
-  topScore >= 80 &&
+  topScore >= 85 &&
 
-  scoreGap >= 7 &&
+  scoreGap >= 8 &&
 
   (
 
