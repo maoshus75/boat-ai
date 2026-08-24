@@ -784,7 +784,7 @@ function renderBoats(boats) {
 
         <div class="boat-score">
 
-          AI評価 ${boat.score}%
+          AI評価 ${boat.score}点
 
         </div>
 
